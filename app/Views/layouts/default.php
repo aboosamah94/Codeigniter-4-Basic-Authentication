@@ -16,7 +16,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="<?= base_url(); ?>">Auth App</a>
+      <a class="navbar-brand" href="<?= base_url(); ?>">Auth App<?php if (current_user()): ?> / Hello: <?= esc(current_user()->name) ?><?php endif; ?></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -62,6 +62,13 @@
         </div>
       <?php endif; ?>
 
+      <?php if (session()->has('error')): ?>
+        <div class="alert alert-error alert-dismissible fade show" role="alert">
+          <?= session('error'); ?>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+		
       <?= $this->renderSection("content") ?>
 
     </div>

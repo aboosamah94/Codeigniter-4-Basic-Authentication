@@ -28,9 +28,11 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 
 // Auth
-$routes->get('signup', 'Signup::new');
-$routes->get('signup/success', 'Signup::success');
-$routes->get('login', 'Login::new');
+$routes->get('signup', 'Signup::new', ['filter' => 'guest']);
+$routes->get('signup/success', 'Signup::success', ['filter' => 'guest']);
+
+$routes->get('login', 'Login::new', ['filter' => 'guest']);
+
 $routes->get('logout', 'Login::delete');
 $routes->get('logout/message', 'Login::showLogoutMessage');
 // Auth admin
