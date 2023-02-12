@@ -16,7 +16,9 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="<?= base_url(); ?>">Auth App<?php if (current_user()): ?> / Hello: <?= esc(current_user()->name) ?><?php endif; ?></a>
+      <a class="navbar-brand" href="<?= base_url(); ?>">Auth App<?php if (current_user()): ?> / Hello: <?=
+              esc(current_user()->name) ?><?php endif; ?>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,6 +30,13 @@
           </li>
 
           <?php if (current_user()): ?>
+
+            <?php if (current_user()->is_admin): ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('dashboard/users'); ?>">Users</a>
+              </li>
+            <?php endif; ?>
+
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('logout'); ?>">Logout</a>
             </li>
@@ -67,8 +76,8 @@
           <?= session('error'); ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    <?php endif; ?>
-		
+      <?php endif; ?>
+
       <?= $this->renderSection("content") ?>
 
     </div>

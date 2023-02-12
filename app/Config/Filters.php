@@ -11,6 +11,7 @@ use CodeIgniter\Filters\SecureHeaders;
 
 use App\Filters\LoginFilter;
 use App\Filters\GuestFilter;
+use App\Filters\AdminFilter;
 
 class Filters extends BaseConfig
 {
@@ -19,14 +20,15 @@ class Filters extends BaseConfig
      * make reading things nicer and simpler.
      */
     public array $aliases = [
-        'csrf'          => CSRF::class,
-        'toolbar'       => DebugToolbar::class,
-        'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
+        'csrf' => CSRF::class,
+        'toolbar' => DebugToolbar::class,
+        'honeypot' => Honeypot::class,
+        'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
 
-        'login'    => LoginFilter::class,
-        'guest'    => GuestFilter::class,
+        'login' => LoginFilter::class,
+        'guest' => GuestFilter::class,
+        'admin' => AdminFilter::class,
     ];
 
     /**
@@ -66,5 +68,16 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'login' => [
+            'before' => [
+                'dashboard/*'
+            ]
+        ],
+        'admin' => [
+            'before' => [
+                'dashboard/users(/*)?'
+            ]
+        ]
+    ];
 }
