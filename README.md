@@ -6,3 +6,7 @@
  run
  
  php spark migrate
+
+ then run
+
+ php spark db:seed
