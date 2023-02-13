@@ -5,8 +5,8 @@
  
  run
  
- php spark migrate
+     php spark migrate
 
  then run
 
- php spark db:seed
+     php spark db:seed
