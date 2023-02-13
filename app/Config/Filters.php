@@ -78,6 +78,11 @@ class Filters extends BaseConfig
             'before' => [
                 'dashboard/users(/*)?'
             ]
+        ],
+        'guest' => [
+            'before' => [
+                'password(/*)?'
+            ]
         ]
     ];
 }
