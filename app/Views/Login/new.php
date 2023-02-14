@@ -29,8 +29,14 @@
     <input type="password" class="form-control" name="password">
 </div>
 
+<div class="mb-3">
+    <label for="remember_me">
+        <input type="checkbox" class="form-check-label" id="remember_me" name="remember_me" <?php if (old('remember_me')): ?>checked<?php endif; ?>> remember me
+    </label>
+</div>
+
 <button type="submit" class="btn btn-primary">Login</button>
-<a href="<?= base_url(); ?>">Cancel</a>
+<a href="<?= base_url('login/forgot'); ?>">Forgot Password?</a>
 
 <?= form_close() ?>
 

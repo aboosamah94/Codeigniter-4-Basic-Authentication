@@ -63,13 +63,19 @@ $routes->get('dashboard/users/delete/(:num)', 'Admin\Users::delete/$1');
 
 // User
 $routes->get('dashboard/profile', 'Profile::show');
+$routes->get('dashboard/profile/image', 'Profile::image');
 $routes->get('dashboard/profile/edit', 'Profile::edit');
 $routes->get('dashboard/profile/editpassword', 'Profile::editPassword');
 $routes->get('dashboard/profile/authenticate', 'Profile::authenticate');
 
+$routes->get('dashboard/profile/profileimage/edit', 'profileimage::edit');
+$routes->get('dashboard/profile/profileimage/delete', 'profileimage::delete');
+
 $routes->post('dashboard/profile/update', 'Profile::update');
 $routes->post('dashboard/profile/updatepassword', 'Profile::updatepassword');
 $routes->post('dashboard/profile/processauthenticate', 'Profile::processauthenticate');
+
+$routes->post('dashboard/profile/profileimage/update', 'profileimage::update');
 
 
 /*
