@@ -13,7 +13,9 @@ class Profileimage extends BaseController
     
     public function update()
     {
+        $user = service('auth')->getCurrentUser();
         $file = $this->request->getFile('image');
+        $path = ROOTPATH . 'public/uploads/profile_images/' . $user->profile_image;
         
         if ( ! $file->isValid()) {
             
@@ -38,24 +40,39 @@ class Profileimage extends BaseController
         
         $type = $file->getMimeType();
         
-        if ( ! in_array($type, ['image/png', 'image/jpeg'])) {
+        if ( ! in_array($type, ['image/png', 'image/jpeg', 'image/gif'])) {
             
             return redirect()->back()
-                             ->with('warning', 'Invalid file format (PNG or JPEG only)');
+                             ->with('warning', 'Invalid file format (PNG or JPEG or GIF only)');
         }
+
+        if (is_file($path)) {
+            
+            unlink($path);
+        }
+
+
+            $newName = $file->getRandomName();
+            $uploadPath = ROOTPATH . 'public/uploads/profile_images/';
+
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            
+            if ($file->getMimeType() !== 'png') {
+                service('image')
+                    ->withFile($file)
+                    ->convert(IMAGETYPE_PNG)
+                    ->save($uploadPath . $newName, 80);
+            } else {
+                $file->move($uploadPath, $newName);
+            }
+            service('image')
+                ->fit(200, 200, 'center')
+                ->save($uploadPath . $newName, 80);
+
         
-        $path = $file->store('profile_images');
-        
-        $path = WRITEPATH . 'uploads/' . $path;
-        
-        service('image')
-            ->withFile($path)
-            ->fit(200, 200, 'center')
-            ->save($path);
-        
-        $user = service('auth')->getCurrentUser();
-        
-        $user->profile_image = $file->getName();
+        $user->profile_image = $newName;
         
         $model = new \App\Models\UserModel;
         
@@ -72,7 +89,7 @@ class Profileimage extends BaseController
             
             $user = service('auth')->getCurrentUser();
             
-            $path = WRITEPATH . 'uploads/profile_images/' . $user->profile_image;
+            $path = ROOTPATH . 'public/uploads/profile_images/' . $user->profile_image;
             
             if (is_file($path)) {
             

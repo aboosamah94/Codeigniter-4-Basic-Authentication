@@ -78,6 +78,7 @@ $routes->post('dashboard/profile/processauthenticate', 'Profile::processauthenti
 $routes->post('dashboard/profile/profileimage/update', 'profileimage::update');
 
 
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
