@@ -12,8 +12,8 @@ class UserSeeder extends Seeder
 
         $data = [
 			'name'     => 'Admin',
-			'email'    => 'admin@example.com',
-			'password' => 'secret',
+			'email'    => 'admin@demo.com',
+			'password' => '12345678',
 			'is_admin' => true,
 			'is_active' => true
 		];

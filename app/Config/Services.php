@@ -29,7 +29,7 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
-
+	
      public static function auth($getShared = true)
      {
          if ($getShared)
@@ -39,4 +39,5 @@ class Services extends BaseService
      
          return new \App\Libraries\Authentication;
      }
+	
 }
