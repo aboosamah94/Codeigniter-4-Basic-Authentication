@@ -11,7 +11,7 @@
 <?php if ($user->profile_image): ?>
     
 
-    <img src="<?= base_url('uploads/profile_images/' .$user->profile_image) ?>" width="200" height="200" alt="profile image">
+    <img src="<?= base_url('dashboard/profile/profileimage') ?>" width="200" height="200" alt="profile image">
 
 
     <a href="<?= base_url('dashboard/profile/profileimage/delete'); ?>" onclick="return confirm('Are you sure?');">Delete

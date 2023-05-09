@@ -15,7 +15,8 @@ class Profileimage extends BaseController
     {
         $user = service('auth')->getCurrentUser();
         $file = $this->request->getFile('image');
-        $path = ROOTPATH . 'public/uploads/profile_images/' . $user->profile_image;
+        //$path = ROOTPATH . 'public/uploads/profile_images/' . $user->profile_image;
+        $path = WRITEPATH . 'uploads/profile_images/' . $user->profile_image;
         
         if ( ! $file->isValid()) {
             
@@ -47,13 +48,12 @@ class Profileimage extends BaseController
         }
 
         if (is_file($path)) {
-            
             unlink($path);
         }
 
 
             $newName = $file->getRandomName();
-            $uploadPath = ROOTPATH . 'public/uploads/profile_images/';
+            $uploadPath = WRITEPATH . 'uploads/profile_images/';
 
             if (!is_dir($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
@@ -89,7 +89,7 @@ class Profileimage extends BaseController
             
             $user = service('auth')->getCurrentUser();
             
-            $path = ROOTPATH . 'public/uploads/profile_images/' . $user->profile_image;
+            $path = WRITEPATH . 'uploads/profile_images/' . $user->profile_image;
             
             if (is_file($path)) {
             

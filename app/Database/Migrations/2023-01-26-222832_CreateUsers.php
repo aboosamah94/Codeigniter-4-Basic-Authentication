@@ -183,6 +183,8 @@ class CreateUser extends Migration
         $this->forge->createTable('permissions');
     }
 
+    //--------------------------------------
+        
     public function down()
     {
         $this->forge->dropTable('users');

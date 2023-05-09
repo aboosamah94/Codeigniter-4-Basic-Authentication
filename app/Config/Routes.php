@@ -74,6 +74,7 @@ $routes->get('dashboard/profile/edit', 'Profile::edit');
 $routes->get('dashboard/profile/editpassword', 'Profile::editPassword');
 $routes->get('dashboard/profile/authenticate', 'Profile::authenticate');
 
+$routes->get('dashboard/profile/profileimage', 'Profile::image');
 $routes->get('dashboard/profile/profileimage/edit', 'profileimage::edit');
 $routes->get('dashboard/profile/profileimage/delete', 'profileimage::delete');
 
