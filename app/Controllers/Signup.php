@@ -8,7 +8,7 @@ class Signup extends BaseController
 
 	public function __construct()
 	{
-		$this->model = new \App\Models\UserModel;
+		$this->model = new \App\Models\UsersModel;
 	}
 
 	public function new()
@@ -23,7 +23,7 @@ class Signup extends BaseController
 
     public function activate($token)
     {
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
         
         $model->activateByToken($token);
         

@@ -8,7 +8,7 @@ class Authentication
     
     public function login($email, $password, $remember_me)
     {
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
 
         $user = $model->findByEmail($email);
                       
@@ -83,7 +83,7 @@ class Authentication
             
         }
         
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
         
         $user = $model->find(session()->get('user_id'));
         
@@ -113,7 +113,7 @@ class Authentication
             return null;
         }
         
-        $user_model = new \App\Models\UserModel;
+        $user_model = new \App\Models\UsersModel;
         
         $user = $user_model->find($remembered_login['user_id']);
         

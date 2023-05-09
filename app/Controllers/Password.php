@@ -22,7 +22,7 @@ class Password extends BaseController
 
     public function reset($token)
     {
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
         
         $user = $model->getUserForPasswordReset($token);
         
@@ -49,7 +49,7 @@ class Password extends BaseController
 
     public function processForgot()
     {
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
         
         $user = $model->findByEmail($this->request->getPost('email'));
         
@@ -73,7 +73,7 @@ class Password extends BaseController
     
     public function processReset($token)
     {
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
         
         $user = $model->getUserForPasswordReset($token);
         

@@ -74,7 +74,7 @@ class Profileimage extends BaseController
         
         $user->profile_image = $newName;
         
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
         
         $model->protect(false)
               ->save($user);
@@ -98,7 +98,7 @@ class Profileimage extends BaseController
             
             $user->profile_image = null;
             
-            $model = new \App\Models\UserModel;
+            $model = new \App\Models\UsersModel;
             
             $model->protect(false)
                   ->save($user);

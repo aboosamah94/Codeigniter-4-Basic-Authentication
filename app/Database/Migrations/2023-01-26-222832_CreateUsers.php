@@ -18,6 +18,11 @@ class CreateUser extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
+            'username' => [
+                'type' => 'VARCHAR',
+                'constraint' => '128',
+                'null' => false,
+            ],
             'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '128',
@@ -33,6 +38,11 @@ class CreateUser extends Migration
                 'constraint' => '255',
                 'null' => false,
             ],
+            'is_active' => [
+                'type' => 'BOOLEAN',
+                'null' => false,
+                'default' => false
+            ],
             'is_admin' => [
                 'type' => 'BOOLEAN',
                 'null' => false,
@@ -44,16 +54,25 @@ class CreateUser extends Migration
                 'unsigned' => true,
                 'null' => false,
             ],
+            'status' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true,
+            ],
+            'bio' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+            'profile_image' => [
+                'type' => 'VARCHAR',
+                'constraint' => '128',
+                'null' => true,
+            ],
             'activation_hash' => [
                 'type' => 'VARCHAR',
                 'constraint' => '64',
                 'unique' => true,
                 'null' => true,
-            ],
-            'is_active' => [
-                'type' => 'BOOLEAN',
-                'null' => false,
-                'default' => false
             ],
             'reset_hash' => [
                 'type' => 'VARCHAR',
@@ -65,11 +84,6 @@ class CreateUser extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
-            'profile_image' => [
-                'type' => 'VARCHAR',
-                'constraint' => '128',
-                'null' => true,
-            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -79,9 +93,14 @@ class CreateUser extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
                 'default' => null
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
             ]
         ]);
-        $this->forge->addPrimaryKey('id')->addUniqueKey('email');
+        $this->forge->addPrimaryKey('id')->addUniqueKey('email')->addUniqueKey('username');
         $this->forge->addForeignKey('role_id', 'roles', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('users');
 
@@ -130,6 +149,21 @@ class CreateUser extends Migration
                 'constraint' => 255,
                 'default' => 'default'
             ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
+            ]
         ]);
         $this->forge->addPrimaryKey('id')->addUniqueKey('name');
         $this->forge->createTable('roles');
@@ -177,6 +211,21 @@ class CreateUser extends Migration
                 'type' => 'BOOLEAN',
                 'default' => false
             ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
+            ]
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('role_id', 'roles', 'id', 'CASCADE', 'CASCADE');
@@ -184,7 +233,7 @@ class CreateUser extends Migration
     }
 
     //--------------------------------------
-        
+
     public function down()
     {
         $this->forge->dropTable('users');

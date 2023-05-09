@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\Entities\User;
+use App\Entities\Users as UserEntity;;
 
 class Users extends \App\Controllers\BaseController
 {
@@ -10,7 +10,7 @@ class Users extends \App\Controllers\BaseController
 
     public function __construct()
     {
-        $this->model = new \App\Models\UserModel;
+        $this->model = new \App\Models\UsersModel;
     }
 
     public function index()
@@ -37,7 +37,7 @@ class Users extends \App\Controllers\BaseController
 
     public function new ()
     {
-        $user = new User;
+        $user = new UserEntity;
 
         return view('Admin/Users/new', [
             'user' => $user
@@ -57,7 +57,7 @@ class Users extends \App\Controllers\BaseController
 
 	public function create()
 	{
-		$user = new User($this->request->getPost());
+		$user = new UserEntity($this->request->getPost());
 
 		if ($this->model->protect(false)->insert($user)) {
 

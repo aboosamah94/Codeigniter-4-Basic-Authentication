@@ -4,39 +4,53 @@ namespace App\Models;
 
 use App\Libraries\Token;
 
-class UserModel extends \CodeIgniter\Model
+class UsersModel extends \CodeIgniter\Model
 {
     protected $table = 'users';
 
-    protected $allowedFields = ['name', 'email', 'password', 'activation_hash', 'reset_hash', 'reset_expires_at'];
+    protected $allowedFields = ['username', 'name', 'email', 'password_hash', 'activation_hash', 'reset_hash', 'reset_expires_at', 'status', 'bio', 'profile_image'];
 
-    protected $returnType = 'App\Entities\User';
+    protected $returnType = 'App\Entities\Users';
 
     protected $useTimestamps = true;
+    protected $useSoftDeletes = true;
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_at';
 
     protected $validationRules = [
-        'name' => 'required',
+        'username' => 'required|alpha_numeric_space|min_length[3]|max_length[128]|is_unique[users.username]',
+        'name' => 'required|min_length[3]|max_length[128]',
         'email' => 'required|valid_email|is_unique[users.email]',
         'password' => 'required|min_length[6]',
         'password_confirmation' => 'required|matches[password]',
     ];
 
     protected $validationMessages = [
+        'username' => [
+            'required' => 'Please enter a username',
+            'alpha_numeric_space' => 'The username field may only contain alpha-numeric characters and spaces',
+            'min_length' => 'The username field must be at least 3 characters in length',
+            'max_length' => 'The username field cannot exceed 128 characters in length',
+            'is_unique' => 'This username is already taken'
+        ],
         'name' => [
-            'required' => 'Please enter a Name'
+            'required' => 'Please enter a name',
+            'min_length' => 'The name field must be at least 3 characters in length',
+            'max_length' => 'The name field cannot exceed 128 characters in length'
         ],
         'email' => [
-            'required' => 'Please enter an Email',
-            'valid_email' => 'Please enter a Ture Email address',
-            'is_unique' => 'This email address is taken'
+            'required' => 'Please enter an email',
+            'valid_email' => 'Please enter a valid email address',
+            'is_unique' => 'This email address is already taken'
         ],
         'password' => [
-            'required' => 'Please enter a Password',
-            'min_length' => 'Please enter a Password at least 6 characters'
+            'required' => 'Please enter a password',
+            'min_length' => 'The password field must be at least 6 characters in length'
         ],
         'password_confirmation' => [
             'required' => 'Please enter a password confirmation',
-            'matches' => 'Please enter a password matches'
+            'matches' => 'The password confirmation does not match'
         ]
     ];
 

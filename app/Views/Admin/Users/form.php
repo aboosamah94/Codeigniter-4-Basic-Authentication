@@ -1,4 +1,9 @@
 <div class="mb-3">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" id="username" value="<?= old('username', esc($user->username)) ?>">
+</div>
+
+<div class="mb-3">
     <label for="name">Name</label>
     <input type="text" class="form-control" name="name" id="name" value="<?= old('name', esc($user->name)) ?>">
 </div>

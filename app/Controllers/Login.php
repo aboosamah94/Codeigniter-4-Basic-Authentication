@@ -8,7 +8,7 @@ class Login extends BaseController
 
     public function __construct()
     {
-        $this->model = new \App\Models\UserModel;
+        $this->model = new \App\Models\UsersModel;
     }
 
     public function new ()

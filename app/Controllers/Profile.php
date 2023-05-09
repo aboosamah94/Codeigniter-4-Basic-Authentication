@@ -80,7 +80,7 @@ class Profile extends BaseController
                 ->withInput();
         }
 
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
 
         if ($model->save($this->user)) {
 
@@ -106,7 +106,7 @@ class Profile extends BaseController
 
         $this->user->fill($this->request->getPost());
 
-        $model = new \App\Models\UserModel;
+        $model = new \App\Models\UsersModel;
 
         if ($model->save($this->user)) {
 
