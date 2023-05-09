@@ -15,6 +15,8 @@ class Users extends \App\Controllers\BaseController
 
     public function index()
     {
+        checkPermission('Users', 'list_all');
+        
         $users = $this->model->orderBy('id')
             ->paginate(5);
 

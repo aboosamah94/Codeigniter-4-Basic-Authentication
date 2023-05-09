@@ -32,6 +32,9 @@ $routes->get('/', 'Home::index');
 
 $routes->get('sendtest', 'Home::testEmail');
 
+// Dashboard
+$routes->get('dashboard', 'Home::index');
+
 // Auth
 $routes->get('signup', 'Signup::new', ['filter' => 'guest']);
 $routes->get('emailactivate/(:any)', 'Signup::activate/$1');

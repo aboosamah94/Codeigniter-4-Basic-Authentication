@@ -143,7 +143,7 @@ class CreateUser extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'name' => [
+            'controller_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],

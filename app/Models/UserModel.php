@@ -16,7 +16,7 @@ class UserModel extends \CodeIgniter\Model
 
     protected $validationRules = [
         'name' => 'required',
-        'email' => 'required|valid_email|is_unique[user.email]',
+        'email' => 'required|valid_email|is_unique[users.email]',
         'password' => 'required|min_length[6]',
         'password_confirmation' => 'required|matches[password]',
     ];
