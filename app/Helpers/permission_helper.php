@@ -17,7 +17,7 @@ if (!function_exists('hasPermission')) {
             ->where('role_id', $userRoleId)
             ->first();
 
-        if (!$permission || !$permission[$permissionType]) {
+        if (!$permission || !$permission->$permissionType) {
             return false;
         }
 
@@ -30,8 +30,8 @@ if (!function_exists('checkPermission')) {
     function checkPermission($controllerName, $permissionType)
     {
         if (!hasPermission($controllerName, $permissionType)) {
-            echo 'You do not have permission to access this page.';
-            header('Refresh:1; url=' . base_url('dashboard'));
+            echo view('errors/html/error_403');
+            header('Refresh:5; url=' . base_url('dashboard'));
             session()->setFlashdata('warning', 'You don\'t have permission to access this page.');
             exit;
         }

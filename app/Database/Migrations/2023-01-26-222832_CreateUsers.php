@@ -165,7 +165,7 @@ class CreateUser extends Migration
                 'default' => null
             ]
         ]);
-        $this->forge->addPrimaryKey('id')->addUniqueKey('name');
+        $this->forge->addPrimaryKey('id');
         $this->forge->createTable('roles');
 
         // permissions table
